@@ -6,7 +6,7 @@ import { useState, type ChangeEvent } from 'react';
 // import { Toaster } from 'react-hot-toast';
 import { fetchNotes } from '@/lib/api';
 import NoteList from '@/components/NoteList/NoteList';
-import InfoMessage from '@/components/InformMessage/InfoMessage';
+// import InfoMessage from '@/components/InformMessage/InfoMessage';
 import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
 import SearchBox from '@/components/SearchBox/SearchBox';
@@ -18,7 +18,7 @@ const NotesClient = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [page, setPage] = useState<number>(1);
   const [isVisibleModal, setIsVisibleModal] = useState<boolean>(false);
-  const [search] = useDebounce(searchQuery, 1000);
+  const [search] = useDebounce(searchQuery.trim(), 1000);
 
   const { data, isFetching } = useQuery({
     queryKey: ['note', search, page],
@@ -27,7 +27,7 @@ const NotesClient = () => {
   });
 
   const handleSearchNoteInput = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value.trim());
+    setSearchQuery(e.target.value);
     setPage(1);
   };
 
@@ -44,7 +44,7 @@ const NotesClient = () => {
 
   return (
     <div className={css.app}>
-      <header className={css.toolbar}>
+      <div className={css.toolbar}>
         <SearchBox
           searchValue={searchQuery}
           handleSearchNoteInput={handleSearchNoteInput}
@@ -57,21 +57,15 @@ const NotesClient = () => {
         <button className={css.button} onClick={openModal}>
           Створити нотатку +
         </button>
-      </header>
+      </div>
       <main>
-        {/* {isLoading && isFetching && <Loader />} */}
-        {data && data.notes.length > 0 ? (
-          <NoteList notes={data.notes} />
-        ) : (
-          <InfoMessage />
-        )}
+        {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
       </main>
       {isVisibleModal && (
         <Modal onClose={closeModal}>
           <NoteForm onClose={closeModal} />
         </Modal>
       )}
-
       <div>
         <Toaster position="top-right" reverseOrder={false} />
       </div>
