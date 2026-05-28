@@ -13,6 +13,7 @@ import SearchBox from '@/components/SearchBox/SearchBox';
 import { useDebounce } from 'use-debounce';
 import { Toaster } from 'react-hot-toast';
 import Pagination from '@/components/Pagination/Pagination';
+import InfoMessage from '@/components/InformMessage/InfoMessage';
 
 const NotesClient = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -21,9 +22,11 @@ const NotesClient = () => {
   const [search] = useDebounce(searchQuery.trim(), 1000);
 
   const { data, isFetching } = useQuery({
-    queryKey: ['note', search, page],
+    queryKey: ['notes', search, page],
     queryFn: () => fetchNotes(search, page),
     placeholderData: keepPreviousData,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   const handleSearchNoteInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +62,11 @@ const NotesClient = () => {
         </button>
       </div>
       <main>
-        {data && data.notes.length > 0 && <NoteList notes={data.notes} />}
+        {data && data.notes.length > 0 ? (
+          <NoteList notes={data.notes} />
+        ) : (
+          <InfoMessage />
+        )}
       </main>
       {isVisibleModal && (
         <Modal onClose={closeModal}>
