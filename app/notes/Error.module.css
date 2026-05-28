@@ -1,0 +1,11 @@
+.errorBtn {
+  background-color: #f68d8d;
+  color: black;
+  border-radius: 10px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: background 250ms ease;
+  &:hover {
+    background-color: hsl(0, 91%, 67%);
+  }
+}

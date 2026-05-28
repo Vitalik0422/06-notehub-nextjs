@@ -11,8 +11,8 @@ const NoteDetailsClient = () => {
 
   const {
     data: note,
-    error,
     isLoading,
+    error,
   } = useQuery({
     queryKey: ['note', id],
     queryFn: () => fetchNoteById(id),
@@ -20,6 +20,7 @@ const NoteDetailsClient = () => {
     refetchOnWindowFocus: false,
     enabled: Boolean(id),
     staleTime: 60_000,
+    throwOnError: true,
   });
 
   if (isLoading) return <p>Loading...</p>;
