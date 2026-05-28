@@ -1,12 +1,12 @@
-import NoteItem from '../NoteItem/NoteItem'
-import css from './NotesList.module.css'
+import NoteItem from '../NoteItem/NoteItem';
+import css from './NotesList.module.css';
 
-import { Note } from '@/types/types'
+import { Note } from '@/types/note';
 interface NoteListProps {
-    notes: Note[]
+  notes: Note[];
 }
 
-const NoteList = ({notes}: NoteListProps) => {
+const NoteList = ({ notes }: NoteListProps) => {
   return (
     <ul className={css.list}>
       {notes?.map((note) => (
@@ -15,7 +15,7 @@ const NoteList = ({notes}: NoteListProps) => {
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};
 
-export default NoteList
+export default NoteList;

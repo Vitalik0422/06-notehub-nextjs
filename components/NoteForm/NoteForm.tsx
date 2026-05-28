@@ -5,7 +5,7 @@ import { NoteSchema } from '../../schemas/noteSchema';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 // import toast from 'react-hot-toast';
 
-import { NoteFormData } from '@/types/types';
+import { NoteFormData } from '@/types/note';
 import { createNote } from '@/lib/api';
 import toast from 'react-hot-toast';
 

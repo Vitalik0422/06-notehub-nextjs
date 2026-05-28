@@ -1,4 +1,4 @@
-import { Note } from '@/types/types';
+import { Note } from '@/types/note';
 import css from './NoteItem.module.css';
 import Link from 'next/link';
 

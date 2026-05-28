@@ -1,4 +1,4 @@
-import { Note, NoteFormData } from '@/types/types';
+import { Note, NoteFormData } from '@/types/note';
 import axios from 'axios';
 
 axios.defaults.headers.Authorization = `Bearer ${process.env.NEXT_PUBLIC_NOTEHUB_TOKEN}`;
