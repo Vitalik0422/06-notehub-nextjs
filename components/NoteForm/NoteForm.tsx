@@ -1,4 +1,4 @@
-import { Field, Form, Formik, type FormikHelpers } from 'formik';
+import { ErrorMessage, Field, Form, Formik, type FormikHelpers } from 'formik';
 import css from './NoteForm.module.css';
 
 import { NoteSchema } from '../../schemas/noteSchema';
@@ -8,7 +8,6 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { NoteFormData } from '@/types/note';
 import { createNote } from '@/lib/api';
 import toast from 'react-hot-toast';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 interface NoteFormProps {
   onClose: () => void;
@@ -60,9 +59,7 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
               rows={8}
               className={css.input}
             />
-            {errors.title && touched.title && (
-              <ErrorMessage>{errors.title}</ErrorMessage>
-            )}
+            <ErrorMessage component="span" className={css.error} name="title" />
           </div>
           <div className={css.formGroup}>
             <label htmlFor="content">Content</label>
@@ -73,9 +70,11 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
               className={css.textarea}
               rows={8}
             />
-            {errors.content && touched.content && (
-              <ErrorMessage>{errors.title}</ErrorMessage>
-            )}
+            <ErrorMessage
+              component="span"
+              className={css.error}
+              name="content"
+            />
           </div>
           <div className={css.formGroup}>
             <label htmlFor="tag">Tag</label>
