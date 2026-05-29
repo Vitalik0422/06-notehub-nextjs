@@ -3,9 +3,9 @@ import css from './SearchBox.module.css';
 import { RotatingLines } from 'react-loader-spinner';
 
 interface SearchBoxProps {
-  searchValue?: string;
-  handleSearchNoteInput?: (query: ChangeEvent<HTMLInputElement>) => void;
-  isLoading?: boolean;
+  searchValue: string;
+  handleSearchNoteInput: (query: ChangeEvent<HTMLInputElement>) => void;
+  isLoading: boolean;
 }
 
 const SearchBox = ({

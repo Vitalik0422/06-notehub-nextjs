@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './Headert.module.css';
+import css from './Header.module.css';
 // import SearchBox from '../SearchBox/SearchBox';
 import Link from 'next/link';
 

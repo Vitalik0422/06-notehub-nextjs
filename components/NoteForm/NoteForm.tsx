@@ -8,6 +8,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { NoteFormData } from '@/types/note';
 import { createNote } from '@/lib/api';
 import toast from 'react-hot-toast';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 interface NoteFormProps {
   onClose: () => void;
@@ -60,7 +61,7 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
               className={css.input}
             />
             {errors.title && touched.title && (
-              <span className={css.error}>{errors.title}</span>
+              <ErrorMessage>{errors.title}</ErrorMessage>
             )}
           </div>
           <div className={css.formGroup}>
@@ -73,7 +74,7 @@ const NoteForm = ({ onClose }: NoteFormProps) => {
               rows={8}
             />
             {errors.content && touched.content && (
-              <span className={css.error}>{errors.content}</span>
+              <ErrorMessage>{errors.title}</ErrorMessage>
             )}
           </div>
           <div className={css.formGroup}>

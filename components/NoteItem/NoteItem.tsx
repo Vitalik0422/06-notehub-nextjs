@@ -4,8 +4,16 @@ import Link from 'next/link';
 
 interface NoteItemProps {
   note: Note;
+  handleDeleteNote: (id: string) => void;
 }
-const NoteItem = ({ note: { title, content, tag, id } }: NoteItemProps) => {
+
+const NoteItem = ({
+  note: { title, content, tag, id },
+  handleDeleteNote,
+}: NoteItemProps) => {
+  const handleDeleteClick = () => {
+    handleDeleteNote(id);
+  };
   return (
     <>
       <h2 className={css.title}>{title}</h2>
@@ -15,7 +23,9 @@ const NoteItem = ({ note: { title, content, tag, id } }: NoteItemProps) => {
         <Link href={`/notes/${id}`} className={css.viewButton}>
           View Details
         </Link>
-        <button className={css.button}>Delete</button>
+        <button className={css.button} onClick={handleDeleteClick}>
+          Delete
+        </button>
       </div>
     </>
   );
